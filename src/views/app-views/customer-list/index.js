@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Table, Tooltip, message, Button } from 'antd';
 import { EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 import CustomerView from './CustomerView';
 import AvatarStatus from 'components/shared-components/AvatarStatus';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeCustomer } from 'redux/actions/Customer';
+import { fetchCustomers, removeCustomer } from 'redux/actions/Customer';
 import Loading from 'components/shared-components/Loading';
 import { getCustomers, getLoading } from 'redux/selectors/Customer';
 
@@ -15,6 +15,12 @@ const UserList = () => {
 
   const [customerProfileVisible, setCustomerProfileVisible] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+
+    /* eslint-disable */
+    useEffect(() => {
+      dispatch(fetchCustomers());
+    }, []);
+    /* eslint-disable */
 
   const deleteCustomer = id => {
     dispatch(removeCustomer(id));

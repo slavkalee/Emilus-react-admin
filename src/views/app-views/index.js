@@ -1,18 +1,9 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Loading from 'components/shared-components/Loading';
 import { APP_PREFIX_PATH } from 'configs/AppConfig';
-import { useDispatch } from 'react-redux';
-import { fetchCustomers } from 'redux/actions/Customer';
 
 export const AppViews = () => {
-  const dispatch = useDispatch();
-
-  /* eslint-disable */
-  useEffect(() => {
-    dispatch(fetchCustomers());
-  }, []);
-  /* eslint-disable */
 
   return (
     <Suspense fallback={<Loading cover="content" />}>
